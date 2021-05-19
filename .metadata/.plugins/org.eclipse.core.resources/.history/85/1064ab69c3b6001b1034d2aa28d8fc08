@@ -1,0 +1,11 @@
+package com.fatec.scel.model;
+
+@Repository
+public class LivroRepository {
+	public void save(Livro livro) {
+	}
+
+	public int count() {
+		return 1;
+	}
+}

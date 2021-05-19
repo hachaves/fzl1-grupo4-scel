@@ -1,0 +1,35 @@
+package com.fatec.scelrest;
+
+import static org.junit.jupiter.api.Assertions.*;
+import java.util.Set;
+import javax.validation.Validation;
+import javax.validation.ValidatorFactory;
+import javax.validation.Validator;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import javax.validation.ConstraintViolation;
+import com.fatec.scelrest.model.Livro;
+import com.fatec.scelrest.model.LivroRepository;
+
+@SpringBootTest
+class REQ01CadastrarLivro {
+	@Autowired
+	private LivroRepository repository;
+	private Livro livro;
+	private Validator validator;
+	private ValidatorFactory validatorFactory;
+
+	//ct01 omitido
+	@Test
+	void ct02_quando_dados_validos_violacoes_retorna_vazio() {
+		// 	Dado – que o atendente tem um livro não cadastrado
+		livro = new Livro("3333", "Teste de Software", "Delamaro");
+		// Quando – o atendente cadastra um livro com informações válidas
+		validatorFactory = Validation.buildDefaultValidatorFactory();
+		validator = validatorFactory.getValidator();
+		Set<ConstraintViolation<Livro>> violations = validator.validate(livro);
+		// Então – o sistema verifica os dados e retorna que nao existem violacoes.
+		assertTrue(violations.isEmpty());
+	}
+}

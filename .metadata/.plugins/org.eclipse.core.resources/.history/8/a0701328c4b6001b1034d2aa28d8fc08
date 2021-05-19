@@ -1,0 +1,49 @@
+package com.fatec.scel;
+
+import static org.junit.jupiter.api.Assertions.*;
+import java.util.Set;
+import javax.validation.Validation;
+import javax.validation.ValidatorFactory;
+import javax.validation.Validator;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import javax.validation.ConstraintViolation;
+import com.fatec.scel.model.Livro;
+import com.fatec.scel.model.LivroRepository;
+
+@SpringBootTest
+class REQ01CadastrarLivro {
+	@Autowired
+	private LivroRepository repository;
+	private Livro livro;
+	private Validator validator;
+	private ValidatorFactory validatorFactory;
+
+	//ct01 omitido
+	@Test
+	void ct02_quando_dados_validos_violacoes_retorna_vazio() {
+		// 	Dado – que o atendente tem um livro não cadastrado
+		livro = new Livro("3333", "Teste de Software", "Delamaro");
+		// Quando – o atendente cadastra um livro com informações válidas
+		validatorFactory = Validation.buildDefaultValidatorFactory();
+		validator = validatorFactory.getValidator();
+		Set<ConstraintViolation<Livro>> violations = validator.validate(livro);
+		// Então – o sistema verifica os dados e retorna que nao existem violacoes.
+		assertTrue(violations.isEmpty());
+	}
+	
+	@Test
+	void ct03_quando_titulo_branco_msg_titulo_invalido() {
+	// Dado – que o atendente tem um livro não cadastrado
+	livro = new Livro("3333", "", "Delamaro");
+	// Quando – o atendente cadastra um livro com informações válidas
+	validatorFactory = Validation.buildDefaultValidatorFactory();
+	validator = validatorFactory.getValidator();
+	Set<ConstraintViolation<Livro>> violations = validator.validate(livro);
+	// Então – o sistema verifica os dados e retorna titulo invalido.
+	//assertFalse(violations.isEmpty());
+	//assertEquals(violations.size(), 1);
+	assertEquals("Titulo deve ter entre 1 e 50 caracteres", violations.iterator().next().getMessage());
+	}
+}

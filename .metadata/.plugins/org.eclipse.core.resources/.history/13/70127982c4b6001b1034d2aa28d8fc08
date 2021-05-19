@@ -1,0 +1,18 @@
+package com.fatec.scel.model;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class LivroRepository {
+	public void save(Livro livro) {
+	}
+
+	public int count() {
+		return 1;
+	}
+
+	public void deleteAll() {
+		// TODO Auto-generated method stub
+		
+	}
+}

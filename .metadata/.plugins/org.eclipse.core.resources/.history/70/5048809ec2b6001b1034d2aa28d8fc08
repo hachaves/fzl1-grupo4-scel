@@ -1,0 +1,22 @@
+package com.fatec.scel;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class REQ01CadastrarLivroTests {
+	
+	@Autowired
+	LivroRepository repository;
+	Livro livro;
+
+	@Test
+	void ct01_quando_dados_validos_isbn_nao_cadastrado_retorna1() {
+	// Dado – que o atendente tem um livro não cadastrado
+	// Quando – o atendente cadastra um livro com informações válidas
+	// Então – o sistema valida os dados E confirma a operação.
+	}
+
+}

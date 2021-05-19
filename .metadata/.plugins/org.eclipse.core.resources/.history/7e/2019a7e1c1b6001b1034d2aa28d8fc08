@@ -1,0 +1,15 @@
+package com.fatec.scel;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+@SpringBootTest
+class REQ01CadastrarLivroTests {
+
+	@Test
+	void test() {
+		fail("Not yet implemented");
+	}
+
+}
